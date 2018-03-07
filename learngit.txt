@@ -1,0 +1,180 @@
+1 config
+	git config --global user.name "Your Name"
+	git config --global user.email "email@example.com"
+
+2 build a git project
+	cd <dir>
+	git init
+
+3 write a file
+	vi readme.txt
+		Git is a version control system
+		Git is free software
+
+4 add this file
+	git add readme.txt
+
+5 commit this file
+	git commit -m "wrote a readme file"
+		[master（根提交） d81d6a1] wrote a readme file
+		 1 file changed, 2 insertions(+)
+		 create mode 100644 readme.txt
+
+6 check git status
+	git status
+
+7 check file difference
+	git diff
+
+8 check commit log
+	git log
+		commit 8d687c41572345f444aabf30da5d1b90ff74b8a9 (HEAD -> master)
+		Author: funnywolf <dllaolang@126.com>
+		Date:   Wed Feb 28 17:44:29 2018 +0800
+
+		    append GPL
+
+		commit f0ed75e00be8dbd69bcc3e67acc2ce1effeea9e7
+		Author: funnywolf <dllaolang@126.com>
+		Date:   Wed Feb 28 17:42:50 2018 +0800
+
+		    add distributed
+
+		commit d81d6a166807964f61e98eced15e8f2cc30a5bbc
+		Author: funnywolf <dllaolang@126.com>
+		Date:   Wed Feb 28 17:34:04 2018 +0800
+
+		    wrote a readme file
+	git log --pretty=oneline
+		8d687c41572345f444aabf30da5d1b90ff74b8a9 (HEAD -> master) append GPL
+		f0ed75e00be8dbd69bcc3e67acc2ce1effeea9e7 add distributed
+		d81d6a166807964f61e98eced15e8f2cc30a5bbc wrote a readme file
+
+9 back to the last version
+	git reset --hard HEAD^
+	"HEAD" point to the current version,"^" means the last version
+
+10 to the newer version
+	git reset --hard 8d687c41(the commit ID of the newer version)
+	
+11 check git cmd history
+	git reflog
+		ea34578 HEAD@{0}: reset: moving to HEAD^
+		3628164 HEAD@{1}: commit: append GPL
+		ea34578 HEAD@{2}: commit: add distributed
+		cb926e7 HEAD@{3}: commit (initial): wrote a readme file
+
+12 undo changes before "git add" or "git commit"
+	git check out -- readme.txt
+
+13 reset changes from "git add" before "git commit"
+	git reset HEAD readme.txt
+
+14 remove file form git
+	rm test.txt
+	git rm test.txt
+	git commit -m "remove test.txt"
+
+15 add files to the remote repository
+	git remote add origin git@github.com:funnywolfdadada/learngit.git
+
+16 push local branch "matser" to the remote repository
+	git push -u origin master
+		The authenticity of host 'github.com (13.229.188.59)' can't be established.
+		RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
+		Are you sure you want to continue connecting (yes/no)? yes
+		Warning: Permanently added 'github.com,13.229.188.59' (RSA) to the list of known hosts.
+		对象计数中: 22, 完成.
+		Delta compression using up to 4 threads.
+		压缩对象中: 100% (17/17), 完成.
+		写入对象中: 100% (22/22), 1.85 KiB | 473.00 KiB/s, 完成.
+		Total 22 (delta 6), reused 0 (delta 0)
+		remote: Resolving deltas: 100% (6/6), done.
+		To github.com:funnywolfdadada/learngit.git
+		 * [new branch]      master -> master
+		分支 'master' 设置为跟踪来自 'origin' 的远程分支 'master'。
+	"-u" for the first push
+
+17 clone form remote repository
+	git clone git@github.com:funnywolfdadada/gitskills.git
+
+18 create a new branch
+	git checkout -b dev
+	"-b" means create and switch,equals:
+		git branch dev
+		git checkout dev
+
+19 check current branch
+	git branch
+
+20 change branch
+	git checkout master
+
+21 merge branch
+	git merge dev
+
+22 delete branch
+	git branch -d dev
+	git branch -D dev,force delete branch "dev"
+
+23 check branch merge
+	git log --graph --pretty=oneline --abbrev-commit
+	"--graph" print out the log with graph
+
+24 disable "Fast Forward" while merging
+	git merge --no-ff -m "merge with no-ff" dev
+	"--no-ff" disable "Fast Forward",will not delete branch "dev" when merging
+
+25 save current work
+	save
+		git stash
+	check
+		git stash list
+	restore
+		git stash pop,will delete the stash content
+	or
+		git stash apply,just restore
+		git stash drop,delete stash
+	or 
+		git stash apply stash@{0},restore certain stash
+
+26 work with others
+	check remote repository information
+		git remote -v
+	push 
+		git push origin master
+		git push origin dev
+		"origin" means master branch from remote repository
+	clone
+		git@github.com:funnywolfdadada/learngit.git
+	get branch "dev" from remote repository
+		git checkout -b dev origin/dev
+	pull the newest branch
+		git pull
+	set link between local branch "dev" and remote branch "origin/dev"
+		git branch --set-upstream dev origin/dev
+		
+27 tag
+	create a new tag
+		git tag <name>, tag the newest commit
+		git tag <name> <commit id>, tag certain commit
+		git tag -a <name> -m "tag info" <commit id> , tag certain commit with info
+		git tag -s <name> -m "tag info" <commit id> , using PGP signature
+	check all tags
+		git tag
+	check informations of tags
+		git show tagname
+	delete
+		git tag -d <tagname>
+	push
+		git push origin <tagname>
+		git push origin --tag, push all
+	delete remote tag
+		git tag -d v0.9
+		git push origin :refs/tags/v0.9, or
+		git push origin :v0.9, or
+		git push origin --delete tag v0.9
+
+
+
+
