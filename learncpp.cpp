@@ -129,18 +129,18 @@
 	3 类型转换
 		Student s; Person &p = s;
 2.2.2 多继承
-1 一个派生类可以有多个基类
-	class Sofabed : public Sofa, public Bed;
-2 问题：二义性
-	class Sofa里有weight, class Bed里也有weight
-	那么Sofabed就有2个weight，
-	既别扭，也有二义性──用哪个weight ?
-3 解决方法(虚拟继承)
-	虚基类使得：多个类派生出的对象只继承一个基类对象
-	即：Sofabed的基还Sofa, Bed共享一个Furniture对象
-	1．从Sofa, Bed中取出公共特性，创建新类Furniture: 它含有weight
-	2．Sofa, Bed虚拟继承Furniture
-	3．Sofabed多重继承Sofa, Bed
+	1 一个派生类可以有多个基类
+		class Sofabed : public Sofa, public Bed;
+	2 问题：二义性
+		class Sofa里有weight, class Bed里也有weight
+		那么Sofabed就有2个weight，
+		既别扭，也有二义性──用哪个weight ?
+	3 解决方法(虚拟继承)
+		虚基类使得：多个类派生出的对象只继承一个基类对象
+		即：Sofabed的基还Sofa, Bed共享一个Furniture对象
+		1．从Sofa, Bed中取出公共特性，创建新类Furniture: 它含有weight
+		2．Sofa, Bed虚拟继承Furniture
+		3．Sofabed多重继承Sofa, Bed
 2.2.3 构造
 	1 构造顺序
 		1. 虚拟基类构造函数：按继承顺序,只执行一次
