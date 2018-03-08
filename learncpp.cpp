@@ -137,10 +137,10 @@
 		既别扭，也有二义性──用哪个weight ?
 	3 解决方法(虚拟继承)
 		虚基类使得：多个类派生出的对象只继承一个基类对象
-		即：Sofabed的基还Sofa, Bed共享一个Furniture对象
-		1．从Sofa, Bed中取出公共特性，创建新类Furniture: 它含有weight
-		2．Sofa, Bed虚拟继承Furniture
-		3．Sofabed多重继承Sofa, Bed
+		即：Sofabed的基类Sofa、Bed共享一个Furniture对象
+		1．从Sofa、Bed中取出公共特性，创建新类Furniture: 它含有weight
+		2．Sofa、Bed虚拟继承Furniture（继承时前面加上virtual关键字）
+		3．Sofabed多重继承Sofa、Bed
 2.2.3 构造
 	1 构造顺序
 		1. 虚拟基类构造函数：按继承顺序,只执行一次
@@ -194,10 +194,10 @@
 		test_func(e);
 		test_func(c);
 		func是一般的函数时，无法达到上述目的，需要把func设置为虚函数，加上virtual前缀
-		原理：	对于虚函数，采用动态联编：有虚函数的对象里有一个指针，指向虚函数表；
+		原理：对于虚函数，采用动态联编：有虚函数的对象里有一个指针，指向虚函数表；
 			调用虚函数时，会根据对象里的指针找到表，从表中取出函数来执行
 			对于非虚函数，采用静态联编：编译时就确定调用哪个函数
-		差别：	静态联编效率高，动态联编支持多态
+		差别： 静态联编效率高，动态联编支持多态
 	2 多态的限制
 		test_func(Human* h):
 		test_func(Human& h)：使用指针或引用来使用对象时，才有多态
@@ -206,22 +206,22 @@
 		静态成员函数不能是虚函数
 		内联函数不能是虚函数
 		构造函数不能是虚函数
-		析构函数一般都声明为虚函数
+		析构函数一般都声明为虚函数，否则在delete时调用不到派生类的析构函数
 		重载：函数参数不同，不可设为虚函数
 		覆盖：函数参数、返回值相同，可以设为虚函数
 		返回值例外：
 		函数参数相同，但是返回值是当前对象的指针或引用时，也可以设为虚函数
 		class Human {
 		public:
-			virtual Human* test(void)  cout<<"Human's test"<<endl; return this; 
+			virtual Human* test(void) { cout<<"Human's test"<<endl; return this; }
 		};
 		class Englishman : public Human {
 		public:
-			virtual Englishman* test(void)  cout<<"Englishman's test"<<endl; return this; 
+			virtual Englishman* test(void) { cout<<"Englishman's test"<<endl; return this; }
 		};
 		class Chinese : public Human {
 		public:
-			virtual Chinese* test(void)  cout<<"Chinese's test"<<endl; return this; 
+			virtual Chinese* test(void) { cout<<"Chinese's test"<<endl; return this; }
 		};
 		void test_return(Human& h){
 			h.test();
