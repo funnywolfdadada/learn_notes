@@ -1,15 +1,19 @@
 1 c++基础知识
 1.1 class是对struct的扩展
 	含有数据成员，成员函数
+
 1.2 访问控制
 	private, protected, public
 	private只供类内部的函数使用
 	public类外的程序可使用
+
 1.3 this指针
 	在类的成员函数中使用，指向当前对象
+
 1.4 类和对象
 	int a; // int是类型, a是变量
 	Person per; // Person是类, per是对象
+
 1.5 程序结构
 1.5.1 类定义(.h)/类实现(.cpp)
 1.5.2 命名空间
@@ -25,10 +29,13 @@
 			using a::fun;  // 以后调用fun即表示a::fun
 		3. using编译:
 			using namespace a; // 以后调用fun, fun2即可
+
 1.6 重载
 	函数名相同，参数不同(类型、数量、顺序不同)
+
 1.7 指针和引用
 	引用就是别名，引用定义时必须初始化: int a; int &b=a; //b即为a的别名
+
 1.8 构造函数/析构函数
 1.8.1 构造函数:
 	无返回值，函数名与类名相同，可设置默认参数: fun(int a=1, int b=2)
@@ -49,9 +56,11 @@
 1.8.7 析造函数
 	无返回值，无参数，函数形式为"~类名()"
 	对象销毁前瞬间，由系统自动调用析构函数
+
 1.9 new和delete
 	Person *p = new Person(); delete p;
 	Person *pers = new Person[10]; delete[] pers;
+
 1.10 静态成员
 1.10.1 静态数据成员
 	类中定义，类外分配空间和初始化，初始化时不加static
@@ -60,6 +69,7 @@
 1.10.2 静态成员函数
 	在类外定义不加static，不能访问非static成员
 	调用：Person::getCount();
+
 1.11 友元
 	在类中声明非成员函数时加上friend，它即可访问类的私有数据成员
 	一个类的成员函数也可以是另一个类的友元
@@ -70,6 +80,7 @@
 		friend void fun1();   // fun1不是A的成员函数也可以访问a
 		frined void B::fun2(); // B类的fun2也可以访问a
 	};
+
 1.12 运算符重载
 1.12.1 作为类外函数重载
 	Point operator+(cont Point& p1, cont Point& p2) /* p1,p2相加 */
@@ -86,6 +97,7 @@
 		值返回：返回函数内部定义的局部变量；该变量在函数执行时被创建，执行完毕时被销毁；只返回值；效率低
 		引用返回：效率高
 		选择原则：不影响运算结果，效率优先
+
 1.13 const成员函数
 	成员函数声明后面，加上const
 		void printInfo(void) const;
@@ -103,6 +115,7 @@
 	2 继承访问控制
 		无论哪种继承方式，在派生类内部使用父类时并无差别
 		不同的继承方式，会影响这两方面：外部代码对派生类的使用、派生类的子类
+
 2.2 继承
 2.2.1 形式
 	class Father{
@@ -283,6 +296,7 @@
 	具体类由抽象类派生出来
 	具体类编为动态库
 	优点：应用编程、类编程互不影响
+
 3.2 模板
 3.2.1 函数模板
 	1 定义
@@ -347,14 +361,14 @@
 	1 格式
 		1. 声明
 			template<typeclass T>
-			class AAA 
+			class AAA {
 			/* 使用T表示某种类型，比如: */
 			private:
 				T obj;
 			public:
 				void test_func(T& t);
 				.....
-			;
+			};
 		2. 定义
 			template<typeclass T>
 			void AAA<T>::test_func(T& t)  .... 
@@ -368,15 +382,16 @@
 	3 定做(类似重载)
 		1. 声明
 			template<>
-			class AAA<int> 
+			class AAA<int> {
 			......
 			public:
 				void test(void);
-			;
+			};
 		2. 定义
 			void AAA<int>::test(void) ...
 3.2.3 程序组织方式
 	函数模板、类模板，只是一些编译指令，一般来说，它们放在头文件里供其他代码引用
+
 3.3 异常
 3.3.1 一句话概括：捕获异常
 	1 谁捕获异常？捕捉谁？A捕捉B
@@ -430,30 +445,4 @@
 			set_terminate(my_terminate_func);
 		"unexpected"函数用来处理声明之外的异常
 		"terminate"函数用来处理"catch分支未捉到异常"
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	
