@@ -1,0 +1,544 @@
+	目录
+#1:chgrp 	改变群组
+#2:chown 	改变拥有者
+#3:cp 		复制
+#4:chmod	改变权限
+#5:su 		切换账户
+#6:Linux信息
+#7:cd 		变换目录
+#8:pwd  	显示目前所在目录
+#9:mkdir	建立新目录
+#10:rmdir 	删除空目
+#11:rm 		删除文档或目录
+#12:mv 		移动文档或目录
+#13:umask 	预设权限
+#14:locate 	寻找文档
+#15:alias 	命令别名设定功能
+#16:type 	指令类型
+#17:变量
+#18:locale 	语系变量
+#19:read 	键盘读取变量
+#20:declare/typeset 设置变量类型
+#21:变量内容的删除替换
+#22:变量的测试与内容替换
+#23:history 	命令历史
+#24:source 	读入配置文件
+#25:*?[] 	通配符
+#26:<<>> 	数据流重导向
+#27:&&|| 	命令执行的判断依据
+#28:| 		管道命令
+#29:cut 	以行为单位分割输出的数据
+#30:grep 	搜索
+#31:sort 	排序
+#32:uniq 	相同的只显示一个
+#33:wc 		计数
+#34:tee 	双向重导向
+#35:tr 		删除替换
+#36:col 	空格替换tab
+#37:join 	合并文档中有相同数据的行
+#38:paste 	将两个文件的同一行粘贴在一起
+#39:expand 	tab转空格
+#40:split 	分割文档
+#41:xargs 	执行指定命令
+#42:date	显示设置时间
+#43:find 	查找命令
+#44:whereis	查找某个命令的位置
+#45:zip		压缩文件
+#46:unzip   	解压文件
+#47:diff	生成补丁
+#48:patch	打补丁
+#49:du		disk usage
+**************************************************************** 
+#1:chgrp 改变群组 chgrp [-R] groupname filenname/dirname
+[-R]:改变目录下所有文档
+example:chgrp users install.log
+****************************************************************
+#2:chown 改变拥有者
+chown [-R] ownname filename/dirname
+[-R]:改变目录下所有文档
+example:chown funnywolf install.log
+****************************************************************
+#3:cp 复制
+cp sourcefile targetfile
+example:cp .bashrc .bashrc_test
+[-a]:复制所有信息
+[-i]:若目标文件已存在则询问是否覆盖
+****************************************************************
+#4:chmod 改变权限
+chmod [-R] xyz filename/dirname
+[-R]:改变目录下所有文档
+xyz:分别为(owner/group/others)的三个权限(r/w/x)三位二进制的值
+example:chmod 777 .bashrc,将.bashrc的权限改为[-rwxrwxrwx]
+chmod u/r/o=r/w/x filename/dirname
+u/r/o:(owner/group/others)
+example:chmod u=rwx,go=rx .bashrc,将.bashrc权限改为[-rwxr-xr-x]
+****************************************************************
+#5:su 切换账户
+su username
+example:su root,切换到管理员账户
+****************************************************************
+#6:Linux版本信息
+cat /proc/version
+	Linux version 4.8.0-22-generic (buildd@lgw01-11) (gcc version 6.2.0 
+	20161005 (Ubuntu 6.2.0-5ubuntu12) ) #24-Ubuntu SMP Sat Oct 8 09:15:00 UTC 2016
+uname -a
+	Linux ubuntu 4.8.0-22-generic #24-Ubuntu SMP Sat Oct 8 09:15:00 UTC 2016 x86_64 x86_64 x86_64 GNU/Linux
+lsb_release -a
+	No LSB modules are available.
+	Distributor ID: Ubuntu
+	Description:    Ubuntu 16.10
+	Release:        16.10
+	Codename:       yakkety
+cat /etc/issue
+	Ubuntu 16.10 \n \l
+****************************************************************
+#7:cd 变换目录
+cd dir
+.	本层目录
+.. 	上层目录
+-	前一个工作目录
+~	当前用花家的目录
+~user	用户user家的目录
+****************************************************************
+#8:pwd  显示目前所在目录
+pwd [-P]
+[-P]:显示出确切路径，非链接(link)路径
+****************************************************************
+#9:mkdir 建立新目录
+mkdir [-mp] dirname
+[-m]:配置目录权限
+example:mkdir -m 711 test
+[-p]:递归建立多层目录
+example:mkdir -p test1/test2/test3
+****************************************************************
+#10:rmdir 删除空目
+rmdir [-p] dirname
+[-p]:连同上层空目录一起删除
+example:rmdir -p test1/test2/test3
+****************************************************************
+#11:rm 删除文档或目录
+rm [-fir] filename
+[-f]:强制删除
+[-i]:删除询问
+[-r]:递归删除
+****************************************************************
+#12:mv 移动文档或目录
+mv [-fiu] source destination
+[-f]:强制移动
+[-i]:移动前询问
+[-u]:若destination已存在，则source较新时才更新
+****************************************************************
+#13:umask 预设权限
+umask [-S],显示预设可执行权限
+umask xyz,设置预设不可执行权限
+****************************************************************
+#14:locate 寻找文档
+locate [-ir] keyword
+[-i]:忽略大小写
+[-r]:后面可接正规表示法的显示方式
+****************************************************************
+#15:alias 命令别名设定功能
+alias,显示别名
+alias name='cmd',设置别名
+ualias 取消别名
+****************************************************************
+#16:type 指令类型
+type [-tpa] name
+[-t]:以下列结果显示
+file	外部指令
+alias	指令别名
+builtin	内建指令
+[-p]:name为外部指令时才显示完整的文件名
+[-a]:列出PATH路径中，所有含name的指令，包括alias
+****************************************************************
+#17:变量
+(1)myname=funnywolf
+(2)单引号表示纯文本，双引号遇到特殊字符，如$时可保有原本特性
+var="my name is $myname"则var为"my name is funnywolf"
+(3)可用转译字符[\]将特殊符号变为普通字符
+(4)可用[`指令`]或[$(指令)]获取指令的返回值
+(5)可用"$变量"或${变量}累加内容，如[PATH="$PATH":/home/bin]
+(6)export可将变量变成环境变量
+(7)unset取消变量，如[unset 变量名称]
+****************************************************************
+#18:locale 语系变量
+locale [-a]
+[-a]:加[-a]显示所有语系结构，不加则显示当前语系变量
+****************************************************************
+#19:read 键盘读取变量
+read [-pt] variable
+[-p]:后面接提示字符
+[-t]:后面接等待的秒数
+example:read -p "input:" -t 5 heheda
+****************************************************************
+#20:declare/typeset 设置变量类型
+declare [-aixr] variable
+[-a]:数组类型
+[-i]:整型变量
+[-x]:相当于export
+[-r]:readonly类型，不能修改，也不能unset
+****************************************************************
+#21:变量内容的删除替换
+${变量#关键字}:	从前向后，删除符合关键字的最短数据
+${变量##关键字}:从前向后，删除符合关键字的最长数据
+${变量%关键字}:	从后向前，删除符合关键字的最短数据
+${变量%%关键字}:从后向前，删除符合关键字的最长数据
+${变量/旧/新}:	第一个旧字符串替换为新字符串
+${变量//旧/新}:	所有旧字符串替换为新字符串
+ps:关键字可使用通配符[*]
+****************************************************************
+#22:变量的测试与内容替换
+var=${str-expr}:若str不存在，var=expr，否则var=str
+var=${str:-expr}:若str不存在或空，var=expr，否则var=str
+var=${str+expr}:若str不存在，var=空，否则var=expr
+var=${str:+expr}:若str不存在，var=空，否则var=expr
+var=${str=expr}:若str不存在，var=str=expr，否则var=str，str不变
+var=${str:=expr}:若str不存在或空，var=str=expr，否则var=expr
+var=${str?expr}:若str不存在，输出expr，否则var=str
+var=${str:?expr}:若str不存在或空，输出expr，否则var=str
+****************************************************************
+#23:history 命令历史
+history [n]
+history [-c]
+history [-arw] histfile
+[n]:n为数字，列出最近的n条命令
+[-c]:将目前shell中所有history内容删除
+[-a]:将目前新增的history内容新增入hisfiles
+[-r]:将histfile内容读入目前shell的history中
+[-w]:将目前的history写入histfile中
+****************************************************************
+#24:source 读入配置文件
+source 配置文件名
+example:source ~/.bashrc
+. ~/.bashrc,效果同上
+source 环境变量文件名，读入环境变量
+****************************************************************
+#25:*?[] 通配符
+*:0到无穷多个任意字符
+?:一个任意字符
+[]:括号内的任意一个字符，[abcd]表示a,b,c,d中其中一个字符
+[-]:在编码顺序内的任意一个字符，[0-9]表示0到9中任意一个数字
+[^]:^表示反向选择，[^abc]表示除abc外的其他字符
+****************************************************************
+#26:<<>> 数据流重导向
+stdin，代码0，使用<或<<
+stdout，代码1，使用>(覆盖)，>>(累加)
+stderr，代码2，使用2>(覆盖)，2>>(累加)
+example:ls / > ~/rootfile,将根目录信息输出到家目录下rootfile中
+find /home -name .bashrc > listRight 2> listError，正确信息放
+在listRight中，错误信息放在listError中
+find /home -name .bashrc 2> /dev/null，错误信息放垃圾桶黑洞中
+find /home -name .bashrc &> list，所有信息都放list中
+cat > filename，输入文本到filename中，[ctrl]+z结束
+cat > filename < ~/.bashrc，.bashrc内容输入到filename中
+cat > filename << "eof"，手动输入到"eof"结束
+****************************************************************
+#27:&&|| 命令执行的判断依据
+[;]:cmd1;cmd2，一次执行多条语句
+[&&]:cmd1 && cmd2，cmd1执行完成且正确则执行cmd2，否则不执行
+[||]:cmd1 || cmd2，cmd1执行完成且正确则不执行cmd2，否则执行
+example:ls /tmp/abc && touch /tmp/abc/heheda，如果/tmp/abc存在
+则用touch建立/tmp/abc/heheda
+ls /tmp/abc || mkdir /tmp/abc，如果/tmp/abc不存在，则建立该目录
+ls /tmp/abc || mkdir /tmp/abc && touch /tmp/abc/heheda
+如果/tmp/abc不存在，则建立该目录，建立成功后建立/tmp/abc/heheda
+如果/tmp/abc存在，则中间部分不执行，执行后面建立/tmp/abc/heheda
+****************************************************************
+#28:| 管道命令
+cmd1 | cmd2 | cmd3，执行cmd1的stdout作为cmd2的stdin并执行，执行
+cmd2的stdout再作为cmd3的stdin
+****************************************************************
+#29:cut 以行为单位分割输出的数据
+cut [-d] '分隔符' -f fields
+cut [-c] 字符区间
+[-d]:后接分隔符，与[-f]连用
+[-f]:[-d]的分隔符分段后，[-f]用于取出第几段
+[-c]:以字符的单位取出固定的字符区间
+example:echo $PATH | cut -d ':' -f 2,5，以[:]为分隔符，取出其中
+的第2和第5段
+export | cut -c 12-，以字符为单位，输出第12个到最后一个字符
+****************************************************************
+#30:grep 搜索
+grep [-acinv] '搜索字符串' filename
+[-a]:将binary文档作为text文档的方式搜寻数据
+[-c]:计算找到'搜索字符串'的个数
+[-i]:忽略大小写
+[-n]:顺序输出行号
+[-v]:反向选择，显示没有'搜索字符串'的行
+example:last | grep 'root'，显示last中出现root的行
+last | grep -nv 'root'，显示last中不含root的行，并显示行号
+grep -nR 's3c2440' ./systerm/linux-3.4.2
+查找./systerm/linux-3.4.2目录下所有的文件中含有's3c2440'的文件
+****************************************************************
+#31:sort 排序
+sort [-fbMnrtuk] [file or stdin] 
+[-f]:忽略大小写
+[-b]:忽略前面的空格
+[-M]:以月份名字排序
+[-n]:使用纯数字排序
+[-r]:反向排序
+[-t]:分隔符，预设用tab分割
+[-u]:相同的数据只用一行代表
+[-k]:以区间firld排序
+example:cat /etc/passwd | sort，以第一个字符排序
+cat /etc/passwd | sort -t ':' -k 3，以':'分割，以第三个区域的字
+符排序
+cat /etc/passwd | sort -t ':' -k 3 -n，同上，以第三个区域的数字
+进行排序
+last | cut -d ' ' -f 1 | sort，以' '为分隔符，取第一个区域并排序
+****************************************************************
+#32:uniq 相同的只显示一个
+uniq [-ic]
+[-i]:忽略大小写
+[-c]:进行计数
+example:last | cut -d ' ' -f 1 | sort | uniq -c，取帐号栏，排序且
+重复的进出现一个，并为其计数
+****************************************************************
+#33:wc 计数 
+wc [-lwm] filename
+[-l]:仅显示行数
+[-w]:仅显示单词数
+[-m]:仅显示字符数
+example:last | grep [a-zA-Z] | grep -v 'wtmp' | wc -l，取出登录
+数据中字母开头的，并去掉'wtmp'，显示其行数
+wc -l $(find ./ -name '*.[ch]') 统计当前目录下以'.c'或'.h'结尾的文件的行数
+****************************************************************
+#34:tee 双向重导向
+tee [-a] file
+[-a]:不加为覆盖，加上为累加append
+example:last | tee lastfile | cut -d ' ' -f 1，将last输出存入
+lastfile中，并将输出以' '分段后输出显示第一部分
+****************************************************************
+#35:tr 删除替换
+tr [-ds] set1...
+[-d]:删除输出信息中的set1
+[-s]:替换输出信息中的set1
+example:last | tr -s [a-z] [A-Z]，将last输出中的小写字母换成大写
+cat /etc/passwd | tr -d ':'，删除':'
+****************************************************************
+#36:col 空格替换tab
+col [-xb]
+[-x]:将tab换成空格键
+[-b]:文件中有反斜杠的，仅保留反斜杠后的内容
+****************************************************************
+#37:join 合并文档中有相同数据的行
+join [-ti12] file1 file2
+[-t]:join默认以空格为分隔符，并对比第一个字段数据，如果一样则将
+两个数据合并到一行
+[-i]:忽略大小写
+[-1]:表示要用第一个文档的字段来分析
+[-2]:表示要用第二个文档的字段来分析
+example:join -t ':' /etc/passwd /etc/shadow
+****************************************************************
+#38:paste 将两个文件的同一行粘贴在一起
+paste [-d] file1 file2
+[-d]:后接分隔符，默认为tab
+[-]:如果file部分写成[-]，表示来自stdin的数据
+example:cat /etc/group | paste /etc/passwd -，将/etc/group用cat
+输出，并和/etc/passwd粘贴在一起输出出来
+****************************************************************
+#39:expand tab转空格
+expand [-t] file
+[-t]:后面接数字，表示tab替换空格的个数
+****************************************************************
+#40:split 分割文档
+split [-bl] file PREFIX
+[-b]:后面接分割大小，可加单位，b、k、m
+[-l]:按行数分割
+PREFIX:前导符，分割档案的前导文字
+example:split -b 300k /etc/termcap xxx，将termcap以300k为单位分
+成xxxaa，xxxab，xxxac等文档
+cat /etc/xxx* >> termback，将xxxaa，xxxab，xxxac合并到termback中
+****************************************************************
+#41:xargs 执行命令
+xargs [-0epn] cmd
+[-0]:如果输入有特殊字符，则转换成普通字符
+[-e]:后接字符串作为end of file
+[-p]:每次执行命令都会询问
+[-n]:后接执行次数
+example:echo $PATH | cut -d ':' -f 5 | xargs -p ls，以':'为分隔
+符，选出PATH中第五段，并用ls命令执行
+****************************************************************
+#42:date	显示设置时间
+date 显示时间
+date mmddHHMMYYYY.SS	设置当前日期时间，只有root用户才能执行
+执行完之后还要执行 clock -w 来同步到硬件时钟
+mm为月份，dd为日期，HH为小时数，MM为分钟数，YYYY为年份，SS为秒数
+date +FORMAT 	以指定格式显示时间
+date +%Y-%m-%d 就是以 YYYY-mm-dd 的形式显示当前日期
+常用FORMAT
+
+%Y	YYYY格式的年份（Year）
+%m  mm格式的月份01-12
+%d 	dd格式的日期（day of month），01-31
+%H   HH格式的小时数（），00-23
+%M  MM格式的分钟数（），00-59
+%S   SS格式的秒数（），00-59
+%F   YYYY-mm-dd格式的完整日期（Full date），同%Y-%m-%d
+%T   HH-MM-SS格式的时间（Time），同%H:%M:%S
+%s   自1970年以来的秒数。C函数time(&t) 或者Java中 System.currentTimeMillis()/1000, new Date().getTime()/1000
+%w   星期几，0-6，0表示星期天
+%u   星期几，1-7，7表示星期天
+****************************************************************
+#43:find 	查找命令
+find path expression
+按照文件名查找
+	find / -name httpd.conf　　#在根目录下查找文件httpd.conf，表示在整个硬盘查找
+	find /etc -name httpd.conf　　#在/etc目录下文件httpd.conf
+	find /etc -name '*srm*'　　#使用通配符*(0或者任意多个)。表示在/etc目录下查找文件名中含有字符串‘srm’的文件
+	find . -name 'srm*' 　　#表示当前目录下查找文件名开头是字符串‘srm’的文件
+按照文件特征查找
+	find / -amin -10 　　# 查找在系统中最后10分钟访问的文件(access time)
+	find / -atime -2　　 # 查找在系统中最后48小时访问的文件
+	find / -empty 　　# 查找在系统中为空的文件或者文件夹
+	find / -group cat 　　# 查找在系统中属于 group为cat的文件
+	find / -mmin -5 　　# 查找在系统中最后5分钟里修改过的文件(modify time)
+	find / -mtime -1 　　#查找在系统中最后24小时里修改过的文件
+	find / -user fred 　　#查找在系统中属于fred这个用户的文件
+	find / -size +10000c　　#查找出大于10000000字节的文件(c:字节，w:双字，k:KB，M:MB，G:GB)
+	find / -size -1000k 　　#查找出小于1000KB的文件
+使用混合查找方式查找文件
+	参数有： -and(-a), -or(-o), !
+	find /tmp -size +10000c -and -mtime +2 　　#在/tmp目录下查找大于10000字节并在最后2分钟内修改的文件
+	find / -user fred -or -user george 　　#在/目录下查找用户是fred或者george的文件文件
+	find /tmp ! -user panda　　#在/tmp目录中查找所有不属于panda用户的文件
+查找指定目录下的源文件文件，生成cscope.files
+	DIR=/home/funnywolf/systerm/linux-3.4.2
+	find $DIR \
+			-path "$DIR/arch/*" ! -path "$DIR/arch/arm*" -prune -o \
+			-path "$DIR/include/asm-*" ! -path "$DIR/include/asm-arm*" -prune -o     \
+			-path "$DIR/tmp*" -prune -o \
+			-path "$DIR/Documentation*" -prune -o \
+			-path "$DIR/scripts*" -prune -o \
+			-name "*.[chxsS]" -print > cscope.files
+	-a -o ! 表示与、或、非
+	-path "$DIR/tmp*" -prune 表示不搜索"$DIR/tmp*"路径
+	-path "$DIR/arch/*" ! -path "$DIR/arch/arm*" -prune 表示$DIR/arch路径下只搜索arm*
+****************************************************************
+#44:whereis	查找某个命令的位置
+whereis [-bmsu] filename
+-b:只找 binary 格式的文档
+-m:只找在说明文件 manual 路径下的文档
+-s:只找 source 来源档案 
+-u:搜寻不在上述三个项目中的其他特殊档案 
+****************************************************************
+#45:zip     压缩文件
+zip [-options] [-b path] [-t mmddyyyy] [-n suffixes] [zipfile list] [-xi list]
+    -f 更新现有的文件
+    -u 与-f参数类似，但是除了更新现有的文件外，也会将压缩文件中的其他文件解压缩到目录中
+    -d 指定文件解压缩后所要存储的目录
+    -m 将文件压缩并加入压缩文件后，删除原始文件，即把文件移到压缩文件中
+    -r 将指定的目录下的所有子目录以及文件一起处理
+    -j 不处理压缩文件中原有的目录路径
+    -0 在存储，不压缩
+    -l 显示压缩文件内所包含的文件
+    -1 较快速度的压缩
+    -9 较高质量的压缩
+    -q 安静模式，在压缩的时候不显示指令的执行过程
+    -v 执行是时显示详细的信息
+    -c 将解压缩的结果显示到屏幕上，并对字符做适当的转换
+    -z 仅显示压缩文件的备注文字
+    -@ 从标准输入中读取名称，一个路径名称用一行
+    -o 将压缩文件内的所有文件的最新变动时间设为压缩时候的时间
+    -x 指定不要处理.zip压缩文件中的哪些文件
+    -i 只压缩符合条件的文件
+    -F 尝试修复损坏的压缩文件
+    -D 压缩文件内不建立目录名称
+    -A 调整可执行的自动解压缩文件
+    -J 删除可执行文件，留下一个普通的zip归档文件
+    -T 检查备份文件内的每个文件是否正确无误
+    -X 解压缩时同时回存文件原来的UID/GID
+    -y 直接保存符号连接，而非该连接所指向的文件，本参数仅在UNIX之类的系统下有效
+    -e 加密
+    -n 不压缩具有特定字尾字符串的文件
+    -h2 显示更多帮助
+应用实例
+    1、把所有 my1*.doc 的文件打包成一个 new1.zip文件
+        zip new1.zip my1*.doc
+        new1.zip 可以省略扩展名简写成 new1，它会自行默认 .zip 的扩展名。
+    2、删除除.zip文件中的指定文件
+        zip -d new1.zip my18.doc
+        如果当初my18.doc 是压缩在 new1.zip 中的一个文件，现在这条命令把它从压缩文件中抽走并删掉。
+        -d 是删除的意思。
+    3、添加一个文件到.zip文件中
+        zip -g new1.zip my32.doc
+        如果当初并没有把 my32.doc 压在 new1.zip 里面，现在把它加进去。
+        -g 选项是增加而不要重新产生的意思
+    4、将更改过的文件添加到压缩包中
+        zip -u new1.zip my2*.doc
+        如果当初 my2*.doc都已经压缩进 new1.zip 里面了，但是后来 my2*.doc中有几个文件有更改，
+        又不想去找出到底是哪些文件更改了，这条命令请系统自行帮助检查，更改过的才更新到压缩，否则就不必动。
+    5、把一个文件abc.txt和一个目录dir1压缩成为yasuo.zip：
+        zip -r yasuo.zip abc.txt dir1
+    6、将/home/Blinux/html/ 这个目录下所有文件和文件夹打包为当前目录下的html.zip
+        zip -qr html.zip /home/Blinux/html
+        -q为安静模式，在压缩的时候不显示指令的执行过程
+****************************************************************
+#46:unzip   解压文件
+unzip [-cflptuvz][-agCjLMnoqsVX][-P <密 码>][.zip文 件][文件][-d <目录>][-x <文件>] 或 unzip [-Z]
+    -c   将解压缩的结果显示到屏幕上，并对字符做适当的转换。
+    -f   更新现有的文件。
+    -l   显示压缩文件内所包含的文件。
+    -p   与-c参数类似，会将解压缩的结果显示到屏幕上，但不会执行任 何的转换。
+    -t   检查压缩文件是否正确。，但不解压。
+    -u   与-f参数类似，但是除了更新现有的文件外，也会将压缩文件中 的其他文件解压缩到目录中。
+    -v   执行是时显示详细的信息。或查看压缩文件目录，但不解压。
+    -z   仅显示压缩文件的备注文字。
+    -a   对文本文件进行必要的字符转换。
+    -b   不要对文本文件进行字符转换。
+    -C   压缩文件中的文件名称区分大小写。
+    -j   不处理压缩文件中原有的目录路径。
+    -L   将压缩文件中的全部文件名改为小写。
+    -M   将输出结果送到more程 序处理。
+    -n   解压缩时不要覆盖原有的文件。
+    -o   不必先询问用户，unzip执 行后覆盖原有文件。
+    -P<密码>  使用zip的密码选项。
+    -q   执行时不显示任何信息。
+    -s   将文件名中的空白字符转换为底线字符。
+    -V   保留VMS的文件版本信 息。
+    -X   解压缩时同时回存文件原来的UID/GID。
+    [.zip文件]  指定.zip压缩文件。
+    [文件]   指定要处理.zip压缩文 件中的哪些文件。
+    -d<目录>   指定文件解压缩后所要存储的目录。
+    -x<文件>   指定不要处理.zip压 缩文件中的哪些文件。
+    -Z   unzip -Z等于执行zipinfo指令。
+应用实例
+    1：将压缩文件text.zip在当前目录下解压缩
+        unzip test.zip
+    2：将压缩文件text.zip在指定目录/tmp下解压缩，如果已有相同的文件存在，要求unzip命令不覆盖原先的文件
+        unzip -n test.zip -d /tmp
+    3：查看压缩文件目录，但不解压
+        unzip -v test.zip
+    4：将压缩文件test.zip在指定目录tmp下解压缩，如果已有相同的文件存在，要求unzip命令覆盖原先的文件
+    	unzip -o test.zip -d tmp/
+****************************************************************
+#47:diff	生成补丁
+diff [参数] [文件1或目录1] [文件2或目录2]
+diff -urN linux-x.y.z linux-x.y.z_mine > linux-x.y.z_mine.patch
+****************************************************************
+#48:patch	打补丁
+cd linux-x.y.z
+patch -p1 < ../linux-x.y.z_mine.patch
+****************************************************************
+#49:du		disk usage
+du [选项] [文件]
+	-a或-all  显示目录中个别文件的大小。   
+	-b或-bytes  显示目录或文件大小时，以byte为单位。   
+	-c或--total  除了显示个别目录或文件的大小外，同时也显示所有目录或文件的总和。 
+	-k或--kilobytes  以KB(1024bytes)为单位输出。
+	-m或--megabytes  以MB为单位输出。   
+	-s或--summarize  仅显示总计，只列出最后加总的值。
+	-h或--human-readable  以K，M，G为单位，提高信息的可读性。
+	-x或--one-file-xystem  以一开始处理时的文件系统为准，若遇上其它不同的文件系统目录则略过。 
+	-L<符号链接>或--dereference<符号链接> 显示选项中所指定符号链接的源文件大小。   
+	-S或--separate-dirs   显示个别目录的大小时，并不含其子目录的大小。 
+	-X<文件>或--exclude-from=<文件>  在<文件>指定目录或文件。   
+	--exclude=<目录或文件>         略过指定的目录或文件。    
+	-D或--dereference-args   显示指定符号链接的源文件大小。   
+	-H或--si  与-h参数相同，但是K，M，G是以1000为换算单位。   
+	-l或--count-links   重复计算硬件链接的文件。 
+du -sch * 显示当前文件夹下所有文件（包括文件夹）占用的空间
+****************************************************************
+****************************************************************
+****************************************************************
+****************************************************************

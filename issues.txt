@@ -1,0 +1,361 @@
+1、ubuntu虚拟机与主机共享文件夹
+	http://henanzp07.blog.163.com/blog/static/549466022013379271464/
+	http://blog.csdn.net/zz962/article/details/7706755
+	或者用SSH
+
+2、64位ubuntu装arm-linux-gcc各种问题
+	（1）安装lib32的包
+		sudo apt-get install lib32ncurses5 lib32z1
+		sudo apt-get install libstdc++6 
+		sudo apt-get install lib32stdc++6
+	（2）解压arm-linux-gcc-3.4.5-glibc-2.3.6.tar.bz2到根目录下
+		sudo tar jxvf arm-linux-gcc-3.4.5-glibc-2.3.6.tar.bz2 -C /
+	（3）设置环境变量，保存到/etc/profile或/etc/bash.bashrc中
+		export PATH=$PATH:/gcc-3.4.5-glibc-2.3.6/bin
+	http://www.100ask.org/bbs/forum.php?mod=viewthread&tid=15828&extra=page%3D1
+	http://blog.csdn.net/xie0812/article/details/52672687
+
+3、arm启动过程，程序放在哪里执行
+	http://blog.csdn.net/ce123_zhouwei/article/details/7270432
+	http://blog.csdn.net/hulifox007/article/details/7406211
+
+4、tar解压缩命令
+	要解压new.tar.gz目录下的tmp文件夹
+	tar -xvf linux-3.4.113.tar.xz
+	tar -xzvf  new.tar.gz ./new/tmp  
+	（后面的路径如果是压缩包压缩后存在的路径就是说明要解压的文件，如果不是，则指定的是压缩后文件的存放路径）
+	-z ：是否同时具有 gzip 的属性？亦即是否需要用 gzip 压缩？
+	-j ：是否同时具有 bzip2 的属性？亦即是否需要用 bzip2 压缩？
+	http://blog.sina.com.cn/s/blog_6d481ebf0100no87.html
+	http://www.cnblogs.com/urbetter/archive/2010/09/07/1820466.html
+	
+5、配置uboot（make 100ask24x0_config）出现问题
+	ln: failed to create symbolic link 'asm': Operation not supported
+	Makefile:1887: recipe for target '100ask24x0_config' failed
+	make: *** [100ask24x0_config] Error 1
+	解决办法：把文件移除共享文件夹再解压。
+	http://blog.csdn.net/lutherarcher/article/details/51956793
+	http://www.linuxidc.com/Linux/2011-03/33476.htm
+	
+6、u-boot.lds链接脚本分析
+	http://www.cnblogs.com/laojie4321/p/4412954.html
+
+7、ARM重定位
+	把代码从Flash拷到SDRAM中。
+	http://www.cnblogs.com/cb1212/p/6089780.html
+
+8、adr adrl ldr mov总结整理
+	http://www.cnblogs.com/douzi2/p/4934237.html
+	
+9、数据段、代码段、堆栈段、BSS段的区别
+	http://blog.csdn.net/jxhui23/article/details/8064766	
+	距离讲解BSS段
+	http://blog.csdn.net/john159151/article/details/30168911
+	
+10、哈佛结构
+	对ARM9哈佛结构的认识 
+	http://www.cnblogs.com/amanlikethis/p/3344558.html	
+	冯诺依曼体系结构、哈佛体系结构与改进型哈佛结构之间的区别
+	http://blog.csdn.net/do2jiang/article/details/4545690
+	参考S3C2440芯片手册P35，图1-1 S3C2440体系结构框图
+	
+11、原子操作
+	http://blog.csdn.net/onlyou930/article/details/6434205
+	
+12、配置内核出错
+	Makefile:416: *** mixed implicit and normal rules: deprecated syntax
+	Makefile:1449: *** mixed implicit and normal rules: deprecated syntax
+	make: *** No rule to make target 'menuconfig'.  Stop.
+	make太新，不支持老版本的Makefile
+
+13、make menuconfig出错
+	Install ncurses(ncurses-devel) and try again
+	主要就是终端图形配置时最容易出现的问题
+	sudo apt-get install libncurses5-dev 
+	http://blog.csdn.net/hpu11/article/details/52675188
+	http://blog.csdn.net/lhf_tiger/article/details/7216021
+
+14、ubuntu常见错误--could not get lock /var/lib/dpkg/lock -open
+	apt-get命令安装一些软件包时，报错：E：could not get lock /var/lib/dpkg/lock -open
+	sudo rm /var/cache/apt/archives/lock
+	sudo rm /var/lib/dpkg/lock
+	http://www.cnblogs.com/hoys/archive/2011/06/28/2092308.html
+
+15、ubuntu安装NFS
+	sudo apt-get install nfs-kernel-server
+	sudo /etc/init.d/nfs-kernel-server restart
+	showmount -e
+	http://www.cnblogs.com/king-77024128/articles/2666230.html
+	http://www.100ask.org/bbs/forum.php?mod=viewthread&tid=14657&extra=page%3D1
+	
+16、笔记本无线网卡和有线网卡，不用路由器实现主机、虚拟机和开发板互联
+	http://www.100ask.org/bbs/forum.php?mod=viewthread&tid=14147&extra=page%3D1&page=1
+
+17、tslib ts_open: No such file or directory 
+	创建/etc/profile，写入如下内容然后重启或者source /etc/profile
+	export TSLIB_CALIBFILE=/etc/pointercal
+	export TSLIB_CONFFILE=/etc/ts.conf
+	export TSLIB_PLUGINDIR=/lib/ts 
+	export TSLIB_CONSOLEDEVICE=none
+	export TSLIB_TSDEVICE=/dev/input/event0
+	export TSLIB_FBDEVICE=/dev/fb0
+	
+	tslib移植
+	http://www.cnblogs.com/uvsjoh/archive/2011/08/25/2152947.html
+	
+18、烧写kernel用nand write.jffs2是因为这样后面地址不需要页对齐
+
+19、u-boot2012移植
+	http://blog.chinaunix.net/uid-22609852-id-3515982.html
+	
+20、汇编语言中，标号相当于变量
+	例如__bss_start，&__bss_start表示标号所在的地址，__bss_start表示标号所在地址的数据
+	
+21、ARM启动流程
+	http://www.cnblogs.com/wrjvszq/p/4204703.html
+	6410启动过程分析
+	http://blog.csdn.net/down_free/article/details/8724413
+	全志平台linux启动流程分析
+	http://blog.csdn.net/wlwl0071986/article/details/47207809
+
+22、atom编辑器设置、快捷键
+	https://lzw.me/a/atom-editor.html
+	
+23、修改u-boot中include/configs/xxx中的CONFIG_SYS_PROMPT修改u-boot命令行中的用户名
+	#define CONFIG_SYS_PROMPT	"<funnywolf> # "
+
+24、编译内核时出现“"mkimage" command not found - U-Boot images will not be built”
+	使用make uImage编译生成的内核能由uboot引导，编译时会用到mkimage工具，出现这种错误是因为编译器无法找到mkimage工具，该工具在uboot/tools目录下，以下两种方法可以解决问题：
+	方法一：在/etc/bashrc的末行加入以下语句：
+	export PATH:=$PATH:[uboot所在目录]/tools
+	方法二：将uboot/tools目录下的mkimage文件拷备到交叉编译环境的BIN目录：
+	cd [uboot所在目录]/tools
+	http://www.cnblogs.com/longwanjun/p/3554234.html
+	
+25、挂在自己制作的根文件系统出现
+	jffs2: Empty flash at 0x00003fa8 ends at 0x00004000
+	jffs2: Empty flash at 0x00007fc0 ends at 0x00008000
+	jffs2: Empty flash at 0x0000bf88 ends at 0x0000c000
+	jffs2: Empty flash at 0x00013f50 ends at 0x00014000
+	jffs2: Empty flash at 0x00017ffc ends at 0x00018000
+	。。。
+	mkfs.jffs2时页大小和块大小设置错误，正确做法是
+	mkfs.jffs2 -n -s 2048 -e 128KiB -d rootfs -o rootfs.jffs2
+
+26、uboot烧写、启动内核时出现
+	Verifying Checksum ... Bad Data CRC ERROR: can't get kernel image!
+	这里是因为uImage大于2MB，而kernel分区只有2MB大小，所以CRC校验错误
+
+27、启动内核时
+	Kernel panic - not syncing: Attempted to kill init! exitcode=0x00000004
+	原因是配置内核是没有选EABI
+	make menuconfig时在Kernel Features下选上Use the ARM EABI to compile the kernel
+	yaffs: passed flags "" uncorrectable error。。。
+	nand write前一定要擦除，且确定uboot的mtd分区与linux的分区问题
+	
+28、内核移植yaffs2时，mkyaffs2image源码不支持大页
+	利用修改好的源码，或下载支持大页的mkyaffs2image
+
+29、Linux内核C代码规范
+	http://rainforest.host/2017/03/31/code-style/
+	
+30、linux自动闯进设备节点的udev
+	http://www.cnblogs.com/sopost/archive/2013/01/09/2853200.html
+	class_create()和device_create()
+	http://blog.csdn.net/xxu0123456789/article/details/6339661
+	
+31、卸载驱动出现：rmmod: can't change directory to '/lib/modules': No such file or directory
+	mkdir -p /lib/modules
+	又出现：rmmod: can't change directory to '3.4.2': No such file or directory
+	mkdir -p /lib/modules/3.4.2
+	
+32、编译tslib出问题：undefined reference to rpl_malloc
+	去掉config.h.in中的 #undef malloc 、 #undef realloc
+	http://blog.csdn.net/linux_lyb/article/details/3536911
+	
+33、运行tslib的ts_calibrate出现selected device is not a touchscreen I understand
+	原因是内核的EV_VERSION与编译器的不匹配，修改其中一个就行
+	https://yq.aliyun.com/articles/10526
+
+34、挂在nfs时服务器拒绝访问mount.nfs: access denied by server while mounting。。。
+	修改配置文件/etc/exports，加入 insecure 选项
+	然后重启nfs服务：service nfs restart
+	http://liuzhigong.blog.163.com/blog/static/17827237520115305226932/
+	
+35、ubuntu重启nfs服务出错Failed to start nfs.service: Unit nfs.service not found
+	原因是ubuntu 10.0以上的版本取消了service nfs start，改成了service nfs-server start
+	
+36、设置网络共享
+	无线网卡连网，然后设置网络共享，其他设备可以用有线网卡上网
+	http://jingyan.baidu.com/article/f0e83a25a854b022e5910186.html
+	
+37、nanopi静态IP设置
+	https://diannaobos.com/post/393.html
+
+38、useradd与adduser的区别
+	http://www.cnblogs.com/whitehorse/p/5847278.html
+	
+39、ubuntu设置sudo时不用输密码	
+	http://blog.csdn.net/RunningWolf_/article/details/36257783
+	
+40、配置smaba服务器
+	http://bbs.elecfans.com/jishu_1095223_1_1.html
+
+41、smaba用户权限设置
+	http://blog.csdn.net/fyh2003/article/details/7280119
+
+42、ubuntu终端字体设置
+	http://blog.csdn.net/w690333243/article/details/53137988
+	
+43、visualBox共享文件夹设置
+	http://www.cnblogs.com/linjiqin/p/3615477.html
+	ubuntu server共享文件夹设置
+	http://www.sudodev.cn/virtualbox-ubuntu-share-folder/
+	
+44、一些在在中断中调用的标志位等变量需要加volatile关键字，防止编译器优化
+	http://www.cnblogs.com/yc_sunniwell/archive/2010/06/24/1764231.html
+	
+45、s3c2440在MPU6050初始化时不需要延时，但需要设置两次PWR_MGMT_1来解除休眠状态
+	
+46、打补丁patch
+		patch -p1 < ../xxx.patch
+	用diff命令制作补丁
+		diff -urN u-boot-2012.04.01 u-boot-2012.04.01_jz2440 > u-boot-2012.04.01_jz2440.patch
+	
+47、Shell脚本中获取本机ip地址的3个方法
+	http://www.jb51.net/article/56585.htm
+	
+48、开发板ifconfig eth0时错误 ifconfig: SIOCSIFADDR: No such device
+	在mach-smdk2440.c中添加关于dm9000的paltform_device并注册，参考smdk-mini2440.c
+	http://blog.sina.com.cn/s/blog_6165d2a70100h3p8.html
+	
+49、uboot bootargs设置
+	http://www.cnblogs.com/cornflower/archive/2010/03/27/1698279.html
+	http://blog.sina.com.cn/s/blog_72e7b3e50100u0dt.html
+	
+50、编译新的linux内核时 /bin/sh: 1: bc: not found
+	bc is a language--I would NOT expect it to be installed by default.
+	sudo apt-get install bc
+	
+51、linux file_operations中ioctl的消失
+	http://www.cnblogs.com/jack204/archive/2012/03/20/2407422.html
+	
+52、Linux的五个查找命令
+	http://www.ruanyifeng.com/blog/2009/10/5_ways_to_search_for_files_using_the_terminal.html
+
+53、ELF(Executable and Linking Format)文件格式
+	http://www.cnblogs.com/xmphoenix/archive/2011/10/23/2221879.html
+	
+54、数组指针和指针数组的区别 
+	数组指针：指向数组的指针 int (*p)[n];
+	指针数组：存放指针的数组 int *p[n];
+	http://www.cnblogs.com/hongcha717/archive/2010/10/24/1859780.html
+	
+55、内核同步机制completion 与 semaphore 
+	http://bbs.chinaunix.net/thread-4156398-1-1.html
+	http://blog.csdn.net/dreamxu/article/details/5866593
+	
+56、文件和打印共享资源(IP地址)处于联机状态，但未对连接尝试做出响应
+	http://www.cnblogs.com/yuanyanyan/p/6845165.html
+	
+57、gvim windows taglist
+	http://blog.csdn.net/scutth/article/details/6879169
+	
+58、gvim windows cscope
+	http://www.xuebuyuan.com/1919339.html
+	
+59、vim shift+3
+	是#键，表示搜索
+	
+60、linux进程和线程区别
+	http://www.cnblogs.com/youngerchina/p/5624587.html
+	http://www.cnblogs.com/blueclue/archive/2010/07/16/1778855.html
+	
+61、linux 内核定时器timer_list详解
+	http://www.cnblogs.com/leaven/archive/2010/08/19/1803382.html
+	
+62、const修饰指针的不同情况
+	http://www.cnblogs.com/frustrate2/archive/2013/01/12/2857434.html
+	
+63、linux 设备树	
+	http://blog.csdn.net/sam0535/article/details/78362508
+	
+64、OSI（Open System Interconnection，OSI/RM，OSI Reference Model）七层模型与TCP/IP五层模型
+	http://www.cnblogs.com/qishui/p/5428938.html
+	
+65、socket编程
+	http://www.cnblogs.com/skynet/archive/2010/12/12/1903949.html
+	
+66、ARM MMU CACHE
+	http://www.eeworld.com.cn/mcu/article_2016072027731.html
+	http://blog.csdn.net/gooogleman/article/details/3638245
+	
+67、ARM的atomic原子操作
+	http://m.blog.csdn.net/restless_soul/article/details/48297875
+	
+68、linux kernel current宏
+	http://blog.163.com/zhe_wang_2009/blog/static/17228212120123151046236/
+	
+69、linux v4l2
+	Linux内核中的V4L2核心框架分析（V4L2 framework，video for linux 2，linux视频子系统）
+		http://blog.csdn.net/duanlove/article/details/7853106
+	深入理解l内核v4l2框架之video for linux 2
+		http://blog.csdn.net/ramon1892/article/details/8443668
+		http://blog.csdn.net/ramon1892/article/details/8443921
+		http://blog.csdn.net/ramon1892/article/details/8444175
+		http://blog.csdn.net/ramon1892/article/details/8444193
+	Linux 下UVC&V4L2技术简介
+		http://blog.csdn.net/codectq/article/details/44278465
+		http://blog.csdn.net/codectq/article/details/44451237
+	
+70、arm9软件实现的中断嵌套
+    传统ARM中可嵌套的IRQ程序 http://blog.sina.com.cn/s/blog_6e29da2901016e87.html
+    ARM中断原理, 中断嵌套的误区，中断号的怎么来的 http://blog.csdn.net/libaizhang/article/details/4317141
+    
+71、udev与devtmpfs
+    https://unix.stackexchange.com/questions/77933/using-devtmpfs-for-dev
+    http://blog.csdn.net/EDman_linux/article/details/78728659
+	
+72、tslib ./autogen.sh: 4: autoreconf: not found
+    sudo apt-get install autoconf automake libtool
+	
+73、linux多线程VSZ（虚拟内存）很大
+    ulimit -s显示/设置线程栈大小，单位KB，默认8192，ulimit -s 1024设置为1024KB
+   
+74、s3c2440 触摸屏的adc波动太大
+    增加ADCDELAY的值，增加采样时间	
+	
+75、alsa-lib alsa-util移植
+	http://www.cnblogs.com/cainiaoaixuexi/p/3942281.html
+
+76、alsalib make install编译错误
+	/home/funnywolf/systerm/alsa-lib-1.0.27.2/libtool: line 8962: arm-linux-gcc: command not found
+	因为make install需要root权限，而root用户没有配置编译器的PATH
+	sudo su
+	export PATH="$PATH:/toolschain/4.4.3/bin/"
+	再make && make install
+	http://bbs.csdn.net/topics/391898273
+	
+77、ubuntu执行sudo apt-get updat出现Failed to fetch
+	当所使用的ubuntu版本过期，源不再更新。再使用 apt-get 获取软件将会找不到源
+	http://www.cnblogs.com/hyang0/p/7417266.html
+	可以在之后更新系统到最新的release
+	https://askubuntu.com/questions/91815/how-to-install-software-or-upgrade-from-an-old-unsupported-release
+
+78、安装双系统后没有进入grub界面，需要修复EFI启动引导
+	https://linux.cn/article-4667-1.html
+
+79、启动shadowsocks-qt5后，firefox安装FoxyProxy，配置
+	Options; add; proxy type:SOCKS 5; IP:localhost; port:1080; save
+	http://blog.csdn.net/ddyyll988/article/details/78832139
+
+80、centos更换内核
+	vi /boot/grub/grub.conf
+	default=0
+	https://www.zhangfangzhou.cn/lotserver.html	
+
+
+
+
+
+
