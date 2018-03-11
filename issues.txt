@@ -354,8 +354,16 @@
 	default=0
 	https://www.zhangfangzhou.cn/lotserver.html	
 
+81、编译android 5.0，python总是出错
+	系统python为python3，而编译android5.0用的是python2
+	修改/bin/python链接，链接到/bin/python2
+	jdk版本问题可以通过修改环境变量解决
+	http://www.playpenguin.net/archlinux-bian-yi-anroid5-lollipop-cuo-wu-jie-jue.html
 
+82、编译安卓：You have tried to change the API from what has been previously approved.
+	http://www.cnblogs.com/hibraincol/archive/2011/05/11/2043671.html
 
-
-
-
+83、android studio 启动虚拟机失败
+	Emulator: libGL error: unable to load driver: i965_dri.so 
+	解决方法，cd到~/Android/Sdk/emulator/lib64/libstdc++备份文件，然后
+	ln -s /usr/lib/libstdc++.so.6.0.24 ./libstdc++.so.6
