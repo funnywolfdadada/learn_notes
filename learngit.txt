@@ -65,7 +65,7 @@
 		cb926e7 HEAD@{3}: commit (initial): wrote a readme file
 
 12 undo changes before "git add" or "git commit"
-	git check out -- readme.txt
+	git checkout -- readme.txt
 
 13 reset changes from "git add" before "git commit"
 	git reset HEAD readme.txt
