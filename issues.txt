@@ -367,3 +367,10 @@
 	Emulator: libGL error: unable to load driver: i965_dri.so 
 	解决方法，cd到~/Android/Sdk/emulator/lib64/libstdc++备份文件，然后
 	ln -s /usr/lib/libstdc++.so.6.0.24 ./libstdc++.so.6
+
+84、关于终端和控制台的概念
+        https://blog.csdn.net/zhy10/article/details/1925063
+
+85、android studio启动虚拟机提示device offline
+        删除当前用户目录下.android目录下的adbkey和adbkey.public文件
+        https://blog.csdn.net/rurouqiangshi/article/details/51897503
