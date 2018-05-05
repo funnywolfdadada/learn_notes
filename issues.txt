@@ -374,3 +374,8 @@
 85、android studio启动虚拟机提示device offline
         删除当前用户目录下.android目录下的adbkey和adbkey.public文件
         https://blog.csdn.net/rurouqiangshi/article/details/51897503
+
+86、蓝牙连接XBOX手柄失败
+	echo 1 > /sys/module/bluetooth/parameters/disable_ertm
+	然后每次连接前删除配对，然后重新连接
+	https://bbs.archlinux.org/viewtopic.php?id=219471
