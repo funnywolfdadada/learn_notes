@@ -8,7 +8,7 @@ Java初始化顺序：
 	->父类成员变量或代码块->构造函数
 	->子类成员变量或代码块->构造函数
 String[] s = new String[10]; 只是创建了一个拥有10个String引用的数组s，它里面的内容都是null
-Java访问权限从大到小依次是：public、protected、包访问权限（没有关键字）和private
+Java访问权限从大到小依次是：public、protected（包内及子类可以访问）、包访问权限（没有关键字）和private
 外部类的访问权限不能是protected或private，内部类可以
 命令"java ClassName"就可以调用ClassName类的main方法，即使这个类不是public的
 Java子类中重载基类中的方法并不会屏蔽基类中的任何版本
