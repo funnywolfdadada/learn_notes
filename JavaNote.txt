@@ -17,4 +17,7 @@ Java中除了static方法和final方法（private方法属于final方法）外�
 	final方法禁止Override，static方法和数据成员（域，field）在编译时进行解析 (8.2.5, P157)
 	构造方法中调用普通函数也可以多态，但是数据成员可能未完全初始化，构造器中唯一能安全调用
 	的方法是基类的final方法 (8.3.3, P163)
-								
+包含抽象方法的类为抽象类，必须用abstract关键字修饰 (9.1, P169)
+interface的域隐式地是static和final的，方法都是public的 (9.2, P172)
+使用interface的原因：为了能够向上转型为多个基类型；防止创建该类对象 (9.4, P179)
+interface可以extends多个其他的interface (9.5, P180)
