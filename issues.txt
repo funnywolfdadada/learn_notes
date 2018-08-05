@@ -379,3 +379,9 @@
 	echo 1 > /sys/module/bluetooth/parameters/disable_ertm
 	然后每次连接前删除配对，然后重新连接
 	https://bbs.archlinux.org/viewtopic.php?id=219471
+
+87、android ListView
+	https://segmentfault.com/a/1190000013260044
+
+88、android ScrollView和ListView事件分发与冲突
+	https://blog.csdn.net/androidforwell/article/details/52621866

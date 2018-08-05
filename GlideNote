@@ -1,0 +1,41 @@
+RequestOptions options = new RequestOptions()
+	.error(R.drawable.error)
+	.placeholder(R.drawable.loading)
+	.skipMemoryCache(true)
+        .diskCacheStrategy(DiskCacheStrategy.NONE)
+        .transforms(new BlurTransformation(), new GrayscaleTransformation())
+        .centerCrop() // fitCenter(), circleCrop()
+        //.override(200, 100)
+        .override(Target.SIZE_ORIGINAL);
+        
+Glide.with(this)
+	.asBitmap() // asFile(), asDrawable(), asGif()
+	.load(url)
+	.apply(options)
+	//.preload()
+	.listener(new RequestListener<Drawable>() {
+	         @Override
+	         public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+	             return false;
+	         }
+	
+	         @Override
+	         public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+	             return false;
+         }
+     	})
+	.into(imageView);
+
+SimpleTarget<Drawable> simpleTarget = new SimpleTarget<Drawable>() {
+    @Override
+    public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
+        imageView.setImageDrawable(resource);
+    }
+};
+Glide. ... .into(simpleTarget)
+
+FutureTarget<File> target = Glide.with(context)
+                        .asFile()
+                        .load(url)
+                        .submit();
+File imageFile = target.get();
