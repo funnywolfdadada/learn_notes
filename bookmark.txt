@@ -5,3 +5,43 @@
 * Java ClassLoader
 	一看你就懂，超详细java中的ClassLoader详解
 	https://blog.csdn.net/briblue/article/details/54973413
+* Glide
+	https://muyangmin.github.io/glide-docs-cn/
+	Glide最全解析
+	https://blog.csdn.net/column/details/15318.html
+
+* Okhttp
+	OkHttp使用进阶 译自OkHttp Github官方教程
+	http://www.cnblogs.com/ct2011/p/3997368.html
+
+* Http
+	HTTP协议：菜鸟入门系列
+	http://www.cnblogs.com/imyalost/p/7223493.html
+	你应该知道的HTTP基础知识
+	https://www.jianshu.com/p/e544b7a76dac
+
+* Gson
+	https://github.com/google/gson
+
+* Eventbus
+	https://github.com/greenrobot/EventBus
+
+* Retrofit
+	你真的会用Retrofit2吗?Retrofit2完全教程
+	https://www.jianshu.com/p/308f3c54abdd
+	Retrofit 2.0 注解篇
+	https://www.jianshu.com/p/bf884248cb37
+
+* Rxjava
+	给 Android 开发者的 RxJava 详解
+	https://gank.io/post/560e15be2dca930e00da1083
+	给初学者的RxJava2.0教程
+	https://www.jianshu.com/p/464fa025229e
+
+* MVVM
+	谷歌官方Android应用架构库（Android Architecture Components）
+	https://blog.csdn.net/hubinqiang/article/details/73012336
+
+* Android事件传递
+	Android事件分发机制完全解析，带你从源码的角度彻底理解
+	https://blog.csdn.net/guolin_blog/article/details/9097463
