@@ -5,6 +5,7 @@
 * Java ClassLoader
 	一看你就懂，超详细java中的ClassLoader详解
 	https://blog.csdn.net/briblue/article/details/54973413
+
 * Glide
 	https://muyangmin.github.io/glide-docs-cn/
 	Glide最全解析
@@ -45,3 +46,12 @@
 * Android事件传递
 	Android事件分发机制完全解析，带你从源码的角度彻底理解
 	https://blog.csdn.net/guolin_blog/article/details/9097463
+
+* Activity 启动模式
+	彻底弄懂Activity四大启动模式
+	https://blog.csdn.net/mynameishuangshuai/article/details/51491074
+
+* Android 面试题
+	http://www.jackywang.tech/AndroidInterview-Q-A/chinese/
+	https://github.com/stormzhang/android-interview-questions-cn
+	https://lrh1993.gitbooks.io/android_interview_guide/content/
