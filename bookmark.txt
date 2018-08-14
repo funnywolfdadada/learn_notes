@@ -5,3 +5,7 @@
 * Java ClassLoader
 	一看你就懂，超详细java中的ClassLoader详解
 	https://blog.csdn.net/briblue/article/details/54973413
+
+* Activity 启动模式
+	彻底弄懂Activity四大启动模式
+	https://blog.csdn.net/mynameishuangshuai/article/details/51491074
