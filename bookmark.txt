@@ -9,3 +9,8 @@
 * Activity 启动模式
 	彻底弄懂Activity四大启动模式
 	https://blog.csdn.net/mynameishuangshuai/article/details/51491074
+
+* Android 面试题
+	http://www.jackywang.tech/AndroidInterview-Q-A/chinese/
+	https://github.com/stormzhang/android-interview-questions-cn
+	https://lrh1993.gitbooks.io/android_interview_guide/content/
