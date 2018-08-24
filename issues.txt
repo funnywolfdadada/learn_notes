@@ -385,3 +385,9 @@
 
 88、android ScrollView和ListView事件分发与冲突
 	https://blog.csdn.net/androidforwell/article/details/52621866
+
+89、Android里隐藏软键盘时页面抖动的问题
+	https://www.jianshu.com/p/9b983fc195e2
+	
+90、android中的CheckBox改变背景图片后图片显示大小不正确的问题
+	https://blog.csdn.net/qingchen1016/article/details/51199459
