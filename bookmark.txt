@@ -61,3 +61,7 @@
 * 设计模式
 	用Java实现生产者消费者的几种方法
 	https://zhuanlan.zhihu.com/p/20300609
+
+* 保存/恢复 Activity 和 Fragment 状态的最佳实践
+	https://segmentfault.com/a/1190000006691830
+
