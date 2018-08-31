@@ -65,3 +65,5 @@
 * 保存/恢复 Activity 和 Fragment 状态的最佳实践
 	https://segmentfault.com/a/1190000006691830
 
+* Android WebView
+	https://www.jianshu.com/p/3c94ae673e2a
