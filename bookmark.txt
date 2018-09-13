@@ -53,10 +53,7 @@
 
 * Android 面试题
 	http://www.jackywang.tech/AndroidInterview-Q-A/chinese/
-	https://github.com/stormzhang/android-interview-questions-cn
 	https://lrh1993.gitbooks.io/android_interview_guide/content/
-	今日头条Android面试
-	https://blog.csdn.net/epubit17/article/details/80342004
 
 * 设计模式
 	用Java实现生产者消费者的几种方法
