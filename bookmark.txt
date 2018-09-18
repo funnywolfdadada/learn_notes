@@ -53,7 +53,9 @@
 
 * Android 面试题
 	http://www.jackywang.tech/AndroidInterview-Q-A/chinese/
-	https://lrh1993.gitbooks.io/android_interview_guide/content/
+	https://github.com/LRH1993/android_interview/
+	Java 基础笔试题	
+	http://www.cnblogs.com/lanxuezaipiao/p/3371224.html
 
 * 设计模式
 	用Java实现生产者消费者的几种方法
@@ -71,3 +73,19 @@
 * TCP/IP
 	https://juejin.im/post/598ba1d06fb9a03c4d6464ab#heading-28	
 
+* Android Window
+	Android对话框Dialog，PopupWindow，Toast的实现机制
+	https://blog.csdn.net/feiduclear_up/article/details/49080587
+	Android 带你彻底理解 Window 和 WindowManager
+	https://blog.csdn.net/yhaolpz/article/details/68936932
+	Android窗口机制
+	https://www.jianshu.com/p/40a9c93b5a8d
+
+* Android StatusBar
+	Android沉浸式状态栏必知必会
+	http://blog.cgsdream.org/2017/03/16/android-translcent-statusbar/
+
+* Android ListView RecyclerView缓存
+	https://www.cnblogs.com/ganchuanpu/p/8258459.html
+	https://juejin.im/post/5a52b0e15188257345015ad3
+	https://juejin.im/post/5a5d3d9b518825734216e1e8
