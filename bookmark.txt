@@ -98,7 +98,10 @@
 	android Application Component研究之Activity
 	https://blog.csdn.net/windskier/article/details/7096521
 
+* Android Fragment
+	Fragment详解
+	https://blog.csdn.net/harvic880925/article/details/44917955
 
-
-
+* Android UID
+	https://blog.csdn.net/vshuang/article/details/43639211
 
