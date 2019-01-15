@@ -105,3 +105,11 @@
 * Android UID
 	https://blog.csdn.net/vshuang/article/details/43639211
 
+* 玉刚说 Flutter学习指南
+	https://mp.weixin.qq.com/s?__biz=MzIwMTAzMTMxMg==&mid=2649493564&idx=1&sn=9c1363a6b2bb3adea50db053f5f7299a&pass_ticket=DR676r6vjYI7XQnw3x9t2GXRjuZ9QWcsl%2FjC1mCI1%2F8E56uuCUX%2FeFJXstIp7LSU
+
+* Flutter实战
+	https://book.flutterchina.club/
+
+* 码上开学 Jetpack 和 Kotlin 快速上手指南
+	https://kaixue.io/
