@@ -113,3 +113,6 @@
 
 * 码上开学 Jetpack 和 Kotlin 快速上手指南
 	https://kaixue.io/
+
+* Android中Canvas绘图之PorterDuffXfermode使用及工作原理详解
+	https://blog.csdn.net/iispring/article/details/50472485
