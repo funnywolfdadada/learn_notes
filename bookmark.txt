@@ -116,3 +116,6 @@
 
 * Android中Canvas绘图之PorterDuffXfermode使用及工作原理详解
 	https://blog.csdn.net/iispring/article/details/50472485
+
+* 比较纤细的那种粗
+	https://juejin.im/post/597d88f75188257fc2177c36
