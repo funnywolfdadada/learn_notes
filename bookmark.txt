@@ -123,4 +123,5 @@
 * Android - 控件android:ems属性
 	https://blog.csdn.net/caroline_wendy/article/details/41684255
 
-
+* 安卓 TextView 七宗罪
+	https://blog.csdn.net/zhaizu/article/details/51038113
