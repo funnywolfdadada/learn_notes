@@ -128,3 +128,6 @@
 	
 * TextView 在设置了 LinkMovementMethod 后的 ellipesize 问题和滚动问题
 	https://stackoverflow.com/questions/14579785/can-i-disable-the-scrolling-in-textview-when-using-linkmovementmethod
+
+* 深入理解Android之Gradle
+	https://blog.csdn.net/innost/article/details/48228651
